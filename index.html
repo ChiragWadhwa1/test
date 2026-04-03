@@ -24,7 +24,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Premium Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -32,7 +34,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a;
+            background-color: #050505;
             color: #FFFFFF;
         }
 
@@ -111,9 +113,9 @@
 
         /* Core UI Components */
         .header-scrolled {
-            background-color: rgba(10, 10, 10, 0.6);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background-color: rgba(5, 5, 5, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
@@ -136,20 +138,24 @@
             transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        /* Subtle Glass Morphism Class */
+        /* Premium Glass Morphism Class */
         .glow-border {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s, background-color 0.3s;
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .glow-border:hover {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(34, 211, 238, 0.4);
-            box-shadow: 0 0 20px rgba(34, 211, 238, 0.1);
-            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(34, 211, 238, 0.3);
+            border-top-color: rgba(34, 211, 238, 0.5);
+            border-left-color: rgba(34, 211, 238, 0.4);
+            box-shadow: 0 15px 50px rgba(34, 211, 238, 0.15);
+            transform: translateY(-4px);
         }
 
         .accent-blue { color: #22d3ee; }
@@ -191,6 +197,13 @@
 </head>
 <body class="overflow-x-hidden selection:bg-blue-500/30 selection:text-blue-100">
 
+    <!-- Ambient Fixed Background for Deep Glassmorphism effect -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-[#050505]">
+        <div class="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-blue-600/10 rounded-full blur-[120px] mix-blend-screen"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-cyan-500/10 rounded-full blur-[120px] mix-blend-screen"></div>
+        <div class="absolute top-[40%] right-[20%] w-[30vw] h-[30vw] bg-purple-500/5 rounded-full blur-[100px] mix-blend-screen"></div>
+    </div>
+
     <!-- HOME VIEW (Main Website) -->
     <div id="scroll-container" class="relative z-10 block">
 
@@ -199,7 +212,7 @@
             <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
                 <a href="#" class="flex items-center gap-2 font-bold text-2xl tracking-tight hover:opacity-80 transition-opacity">
                     <div class="bg-gradient-to-br from-blue-500 to-cyan-400 text-black p-1.5 rounded-lg shadow-lg shadow-blue-500/20">
-                        <i data-lucide="zap" class="w-6 h-6 stroke-[2.5px] fill-black"></i>
+                        <i class="ph-fill ph-lightning text-xl"></i>
                     </div>
                     <span>Hyp!<span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400"> Media</span></span>
                 </a>
@@ -212,16 +225,16 @@
                     <a href="#roi-engine" class="hover:text-cyan-400 transition-colors drop-shadow-md">ROI Engine</a>
                 </nav>
                 <a href="#contact" class="magnetic-button hidden md:flex bg-white/90 backdrop-blur-md text-black font-semibold py-2.5 px-6 rounded-full hover:bg-white transition-all items-center gap-2">
-                    Multiply My Revenue <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    Multiply My Revenue <i class="ph-bold ph-arrow-right text-base"></i>
                 </a>
                 <button id="menu-btn" class="md:hidden z-50">
-                     <i data-lucide="menu" class="w-6 h-6 text-white"></i>
+                     <i class="ph-bold ph-list text-2xl text-white"></i>
                 </button>
             </div>
         </header>
         
         <!-- Mobile Nav -->
-        <div id="mobile-nav" class="fixed top-0 left-0 w-full h-screen bg-[#0a0a0a]/80 backdrop-blur-2xl z-40 flex flex-col items-center justify-center space-y-8 text-2xl -translate-x-full transition-transform duration-300 border-r border-white/10">
+        <div id="mobile-nav" class="fixed top-0 left-0 w-full h-screen bg-[#050505]/80 backdrop-blur-2xl z-40 flex flex-col items-center justify-center space-y-8 text-2xl -translate-x-full transition-transform duration-300 border-r border-white/10">
              <a href="#about" class="mobile-link text-white hover:text-cyan-400 transition-colors">About Us</a>
              <a href="#problem" class="mobile-link text-white hover:text-cyan-400 transition-colors">The Problem</a>
              <a href="#solution" class="mobile-link text-white hover:text-cyan-400 transition-colors">Our Solution</a>
@@ -232,7 +245,7 @@
         </div>
 
         <!-- Hero Section with New Animations -->
-        <section class="min-h-[100vh] relative flex flex-col justify-center items-center overflow-hidden bg-[#0a0a0a] pt-20">
+        <section class="min-h-[100vh] relative flex flex-col justify-center items-center overflow-hidden pt-20">
             <!-- SWOOSH EFFECT -->
             <div class="swoosh-element"></div>
 
@@ -247,80 +260,63 @@
                 
                 <!-- Floating Social Media & Authority Elements -->
                 
-                <!-- Top Left: LinkedIn -->
                 <div class="absolute top-[20%] left-[10%] md:left-[15%] opacity-20 animate-float">
                     <div class="glow-border p-3 rounded-2xl">
-                        <i data-lucide="linkedin" class="w-8 h-8 md:w-12 md:h-12 text-blue-400"></i>
+                        <i class="ph-light ph-linkedin-logo text-[32px] md:text-[48px] text-blue-400"></i>
                     </div>
                 </div>
                 
-                <!-- Top Right: Instagram -->
                 <div class="absolute top-[25%] right-[10%] md:right-[15%] opacity-20 animate-float-delayed">
                     <div class="glow-border p-3 rounded-2xl">
-                        <i data-lucide="instagram" class="w-8 h-8 md:w-12 md:h-12 text-pink-400"></i>
+                        <i class="ph-light ph-instagram-logo text-[32px] md:text-[48px] text-pink-400"></i>
                     </div>
                 </div>
 
-                <!-- Bottom Left: Twitter -->
                 <div class="absolute top-[65%] left-[5%] md:left-[12%] opacity-15 animate-float-slow">
-                    <i data-lucide="twitter" class="w-8 h-8 md:w-10 md:h-10 text-sky-400"></i>
+                    <i class="ph-light ph-x-logo text-[32px] md:text-[40px] text-sky-400"></i>
                 </div>
 
-                <!-- Bottom Right: YouTube -->
                 <div class="absolute top-[70%] right-[12%] md:right-[18%] opacity-15 animate-float">
                     <div class="glow-border p-3 rounded-2xl">
-                        <i data-lucide="youtube" class="w-8 h-8 md:w-12 md:h-12 text-red-400"></i>
+                        <i class="ph-light ph-youtube-logo text-[32px] md:text-[48px] text-red-400"></i>
                     </div>
                 </div>
 
-                <!-- Mid Right: Facebook -->
                 <div class="absolute top-[40%] right-[5%] md:right-[8%] opacity-10 animate-float-slow">
-                    <i data-lucide="facebook" class="w-6 h-6 md:w-10 md:h-10 text-blue-500"></i>
+                    <i class="ph-light ph-facebook-logo text-2xl md:text-[40px] text-blue-500"></i>
                 </div>
 
-                <!-- Mid Left: Message/Community -->
                 <div class="absolute top-[45%] left-[8%] md:left-[10%] opacity-10 animate-float-delayed">
-                    <i data-lucide="message-circle" class="w-8 h-8 md:w-10 md:h-10 text-green-400"></i>
+                    <i class="ph-light ph-chat-circle-text text-[32px] md:text-[40px] text-green-400"></i>
                 </div>
 
-                <!-- Top Center-Left: Podcast / Speaking -->
                 <div class="absolute top-[15%] left-[30%] md:left-[35%] opacity-15 animate-float-delayed">
-                    <i data-lucide="mic" class="w-6 h-6 md:w-8 md:h-8 text-purple-400"></i>
+                    <i class="ph-light ph-microphone-stage text-2xl md:text-[32px] text-purple-400"></i>
                 </div>
 
-                <!-- Top Center-Right: Growth / Analytics -->
                 <div class="absolute top-[18%] right-[28%] md:right-[32%] opacity-20 animate-float">
-                    <i data-lucide="trending-up" class="w-8 h-8 md:w-10 md:h-10 text-cyan-400"></i>
+                    <i class="ph-light ph-trend-up text-[32px] md:text-[40px] text-cyan-400"></i>
                 </div>
 
-                <!-- Bottom Center-Left: Content / Shorts -->
                 <div class="absolute top-[75%] left-[25%] md:left-[30%] opacity-15 animate-float-slow">
                     <div class="glow-border p-2 rounded-xl">
-                        <i data-lucide="video" class="w-6 h-6 md:w-8 md:h-8 text-rose-400"></i>
+                        <i class="ph-light ph-film-strip text-2xl md:text-[32px] text-rose-400"></i>
                     </div>
                 </div>
 
-                <!-- Bottom Center-Right: PR / Awards -->
                 <div class="absolute top-[80%] right-[25%] md:right-[30%] opacity-10 animate-float-delayed">
-                    <i data-lucide="award" class="w-8 h-8 md:w-12 md:h-12 text-amber-400"></i>
+                    <i class="ph-light ph-medal text-[32px] md:text-[48px] text-amber-400"></i>
                 </div>
 
-                <!-- Mid Center-Left: Global Reach -->
                 <div class="absolute top-[50%] left-[20%] md:left-[25%] opacity-10 animate-float">
-                    <i data-lucide="globe" class="w-10 h-10 md:w-14 md:h-14 text-blue-300"></i>
+                    <i class="ph-light ph-globe-hemisphere-west text-[40px] md:text-[56px] text-blue-300"></i>
                 </div>
 
-                <!-- Mid Center-Right: Newsletter / Email -->
                 <div class="absolute top-[55%] right-[22%] md:right-[26%] opacity-15 animate-float-slow">
                     <div class="glow-border p-2 rounded-xl">
-                        <i data-lucide="mail" class="w-6 h-6 md:w-8 md:h-8 text-orange-400"></i>
+                        <i class="ph-light ph-envelope-simple text-2xl md:text-[32px] text-orange-400"></i>
                     </div>
                 </div>
-                
-                <!-- Glowing Animated Blobs -->
-                <div class="absolute top-1/4 left-1/4 w-[30rem] h-[30rem] bg-blue-600/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
-                <div class="absolute top-1/3 right-1/4 w-[30rem] h-[30rem] bg-cyan-500/15 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
-                <div class="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-[30rem] h-[30rem] bg-blue-400/15 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000"></div>
             </div>
 
             <div class="relative z-10 text-center px-6 max-w-5xl mx-auto" id="hero-content">
@@ -332,17 +328,14 @@
                 </p>
                 <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-btn-reveal">
                     <a href="#contact" class="magnetic-button w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-black rounded-full font-bold text-lg hover:from-blue-400 hover:to-cyan-400 hover:shadow-lg hover:shadow-blue-500/25 transition-all flex items-center justify-center gap-2">
-                        Start The Countdown <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        Start The Countdown <i class="ph-bold ph-arrow-right text-xl"></i>
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- Main Content Area with subtle ambient background light -->
-        <div id="main-content-wrapper" class="bg-[#0a0a0a] relative z-10">
-            
-            <div class="absolute top-[20%] right-0 w-[40rem] h-[40rem] bg-blue-500/5 rounded-full filter blur-[120px] pointer-events-none"></div>
-            <div class="absolute top-[60%] left-0 w-[40rem] h-[40rem] bg-cyan-500/5 rounded-full filter blur-[120px] pointer-events-none"></div>
+        <!-- Main Content Area (Transparent so the fixed glass background comes through) -->
+        <div id="main-content-wrapper" class="bg-transparent relative z-10">
 
             <!-- Problem Section -->
             <section id="problem" class="content-section py-24 md:py-32 border-t border-white/5">
@@ -479,42 +472,42 @@
                     <div class="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div class="glow-border p-8 rounded-2xl flex flex-col sm:flex-row items-start gap-6 section-fade-in group">
                             <div class="bg-blue-500/10 text-cyan-400 p-4 rounded-xl shrink-0 group-hover:scale-110 transition-transform">
-                                <i data-lucide="scissors" class="w-8 h-8"></i>
+                                <i class="ph-light ph-scissors text-[32px]"></i>
                             </div>
                             <div>
                                 <h3 class="text-2xl font-bold text-white mb-2">Content Creators</h3>
                                 <p class="text-neutral-400 leading-relaxed">Transform your existing long-form content into high-impact, algorithmic Shorts that captivate audiences and drive massive channel growth.</p>
-                                 <button data-modal="shortsModal" class="modal-trigger mt-6 inline-flex items-center font-semibold text-cyan-400 hover:text-cyan-300 transition-colors gap-1">View Shorts Blueprint <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                                 <button data-modal="shortsModal" class="modal-trigger mt-6 inline-flex items-center font-semibold text-cyan-400 hover:text-cyan-300 transition-colors gap-1">View Shorts Blueprint <i class="ph-bold ph-arrow-right text-base"></i></button>
                             </div>
                         </div>
                          <div class="glow-border p-8 rounded-2xl flex flex-col sm:flex-row items-start gap-6 section-fade-in group">
                             <div class="bg-blue-500/10 text-cyan-400 p-4 rounded-xl shrink-0 group-hover:scale-110 transition-transform">
-                                <i data-lucide="linkedin" class="w-8 h-8"></i>
+                                <i class="ph-light ph-linkedin-logo text-[32px]"></i>
                             </div>
                             <div>
                                 <h3 class="text-2xl font-bold text-white mb-2">Founders & CXOs</h3>
                                 <p class="text-neutral-400 leading-relaxed">Turn your LinkedIn profile into a revenue engine. We handle content, growth, and lead generation, positioning you as an industry authority.</p>
-                                <button data-modal="linkedinModal" class="modal-trigger mt-6 inline-flex items-center font-semibold text-cyan-400 hover:text-cyan-300 transition-colors gap-1">View LinkedIn Blueprint <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                                <button data-modal="linkedinModal" class="modal-trigger mt-6 inline-flex items-center font-semibold text-cyan-400 hover:text-cyan-300 transition-colors gap-1">View LinkedIn Blueprint <i class="ph-bold ph-arrow-right text-base"></i></button>
                             </div>
                         </div>
                         <div class="glow-border p-8 rounded-2xl flex flex-col sm:flex-row items-start gap-6 section-fade-in group">
                             <div class="bg-blue-500/10 text-cyan-400 p-4 rounded-xl shrink-0 group-hover:scale-110 transition-transform">
-                                <i data-lucide="shield-check" class="w-8 h-8"></i>
+                                <i class="ph-light ph-shield-check text-[32px]"></i>
                             </div>
                             <div>
                                 <h3 class="text-2xl font-bold text-white mb-2">Startups & Founders</h3>
                                 <p class="text-neutral-400 leading-relaxed">Build credibility and protect your reputation with strategic digital PR, media placements, and Online Reputation Management (ORM).</p>
-                                <button data-modal="prModal" class="modal-trigger mt-6 inline-flex items-center font-semibold text-cyan-400 hover:text-cyan-300 transition-colors gap-1">View PR & ORM Blueprint <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                                <button data-modal="prModal" class="modal-trigger mt-6 inline-flex items-center font-semibold text-cyan-400 hover:text-cyan-300 transition-colors gap-1">View PR & ORM Blueprint <i class="ph-bold ph-arrow-right text-base"></i></button>
                             </div>
                         </div>
                          <div class="glow-border p-8 rounded-2xl flex flex-col sm:flex-row items-start gap-6 section-fade-in group">
                             <div class="bg-blue-500/10 text-cyan-400 p-4 rounded-xl shrink-0 group-hover:scale-110 transition-transform">
-                                <i data-lucide="megaphone" class="w-8 h-8"></i>
+                                <i class="ph-light ph-megaphone text-[32px]"></i>
                             </div>
                             <div>
                                 <h3 class="text-2xl font-bold text-white mb-2">Brands</h3>
                                 <p class="text-neutral-400 leading-relaxed">Connect with engaged audiences through strategic influencer marketing. We execute campaigns that build trust and drive conversions.</p>
-                                <button data-modal="influencerModal" class="modal-trigger mt-6 inline-flex items-center font-semibold text-cyan-400 hover:text-cyan-300 transition-colors gap-1">View Influencer Blueprint <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                                <button data-modal="influencerModal" class="modal-trigger mt-6 inline-flex items-center font-semibold text-cyan-400 hover:text-cyan-300 transition-colors gap-1">View Influencer Blueprint <i class="ph-bold ph-arrow-right text-base"></i></button>
                             </div>
                         </div>
                     </div>
@@ -533,22 +526,22 @@
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                          <div class="glow-border p-8 rounded-2xl section-fade-in">
-                            <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400 mb-6 shadow-sm">1</div>
+                            <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400 mb-6 shadow-sm font-black text-xl">1</div>
                             <h4 class="text-xl font-bold text-white mb-3">Authority &rarr; Higher Prices</h4>
                             <p class="text-neutral-400 text-sm leading-relaxed">By establishing you as the go-to expert, we build immense perceived value. This allows you to command premium pricing, increasing your average deal size.</p>
                         </div>
                         <div class="glow-border p-8 rounded-2xl section-fade-in" style="transition-delay: 0.15s;">
-                            <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400 mb-6 shadow-sm">2</div>
+                            <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400 mb-6 shadow-sm font-black text-xl">2</div>
                             <h4 class="text-xl font-bold text-white mb-3">Amplification &rarr; Lower Costs</h4>
                             <p class="text-neutral-400 text-sm leading-relaxed">Strategic amplification puts you in front of ideal customers organically. This reduces reliance on expensive ads, drastically lowering your CAC.</p>
                         </div>
                         <div class="glow-border p-8 rounded-2xl section-fade-in" style="transition-delay: 0.3s;">
-                            <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400 mb-6 shadow-sm">3</div>
+                            <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400 mb-6 shadow-sm font-black text-xl">3</div>
                             <h4 class="text-xl font-bold text-white mb-3">Inbound Flow &rarr; Faster Sales</h4>
                             <p class="text-neutral-400 text-sm leading-relaxed">Authority builds trust before the first call. Inbound leads are pre-sold on your expertise, leading to higher conversion rates and shorter sales cycles.</p>
                         </div>
                         <div class="glow-border p-8 rounded-2xl section-fade-in" style="transition-delay: 0.45s;">
-                            <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400 mb-6 shadow-sm">4</div>
+                            <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400 mb-6 shadow-sm font-black text-xl">4</div>
                             <h4 class="text-xl font-bold text-white mb-3">Monetization &rarr; Predictable Growth</h4>
                             <p class="text-neutral-400 text-sm leading-relaxed">The result is a scalable pipeline of opportunities. Build a sustainable engine for long-term revenue growth and higher customer lifetime value (LTV).</p>
                         </div>
@@ -624,8 +617,8 @@
                     </div>
                     
                     <div class="mt-16 text-center section-fade-in">
-                        <button onclick="showWorkView()" class="magnetic-button inline-flex items-center justify-center gap-2 px-10 py-4 glow-border text-white rounded-full font-bold text-lg transition-all shadow-lg">
-                            View Detailed Case Studies <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        <button onclick="showWorkView()" class="magnetic-button inline-flex items-center justify-center gap-2 px-10 py-4 glow-border text-white rounded-full font-bold text-lg transition-all shadow-lg hover:text-cyan-400">
+                            View Detailed Case Studies <i class="ph-bold ph-arrow-right text-xl"></i>
                         </button>
                     </div>
                 </div>
@@ -659,15 +652,15 @@
                                 <label class="block text-sm font-semibold text-white mb-2">Service of Interest</label>
                                 <div class="relative">
                                     <select name="service_interest" required class="w-full bg-white/[0.03] border border-white/10 backdrop-blur-md rounded-xl px-4 py-4 text-white focus:outline-none focus:bg-white/[0.06] focus:border-cyan-500 transition-all appearance-none cursor-pointer shadow-inner">
-                                        <option value="" disabled selected class="bg-neutral-900">Select an option...</option>
-                                        <option value="Viral Shorts Rearrangements" class="bg-neutral-900">Viral Shorts for Creators</option>
-                                        <option value="LinkedIn Management" class="bg-neutral-900">LinkedIn for Founders & CXOs</option>
-                                        <option value="Digital PR & ORM" class="bg-neutral-900">Digital PR & ORM for Startups</option>
-                                        <option value="Influencer Marketing" class="bg-neutral-900">Influencer Marketing for Brands</option>
-                                        <option value="General Inquiry" class="bg-neutral-900">General Inquiry</option>
+                                        <option value="" disabled selected class="bg-[#050505]">Select an option...</option>
+                                        <option value="Viral Shorts Rearrangements" class="bg-[#050505]">Viral Shorts for Creators</option>
+                                        <option value="LinkedIn Management" class="bg-[#050505]">LinkedIn for Founders & CXOs</option>
+                                        <option value="Digital PR & ORM" class="bg-[#050505]">Digital PR & ORM for Startups</option>
+                                        <option value="Influencer Marketing" class="bg-[#050505]">Influencer Marketing for Brands</option>
+                                        <option value="General Inquiry" class="bg-[#050505]">General Inquiry</option>
                                     </select>
                                     <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-neutral-400">
-                                        <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                                        <i class="ph-bold ph-caret-down text-xl"></i>
                                     </div>
                                 </div>
                             </div>
@@ -678,7 +671,7 @@
                             </div>
 
                             <button type="submit" class="w-full py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-black rounded-xl font-bold text-lg hover:from-blue-400 hover:to-cyan-400 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20">
-                                Book My Strategy Call <i data-lucide="rocket" class="w-5 h-5"></i>
+                                Book My Strategy Call <i class="ph-light ph-rocket text-xl"></i>
                             </button>
                             <div id="form-result" class="mt-4 text-sm text-center font-medium"></div>
                         </form>
@@ -687,23 +680,23 @@
             </section>
             
             <!-- Footer -->
-            <footer class="content-section border-t border-white/5 bg-[#0a0a0a]">
+            <footer class="content-section border-t border-white/5 bg-[#050505]">
                 <div class="max-w-7xl mx-auto px-6 py-12">
                     <div class="flex flex-col md:flex-row justify-between items-center text-center">
                         <div class="flex items-center gap-2 font-bold text-xl tracking-tight text-white mb-4 md:mb-0">
-                            <i data-lucide="zap" class="w-5 h-5 text-cyan-400 fill-current"></i>
+                            <i class="ph-fill ph-lightning text-xl text-cyan-400"></i>
                             <span>Hyp!<span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400"> Media</span></span>
                         </div>
                         <p class="text-neutral-500 text-sm">&copy; <span id="year"></span> Hyp! Media. All Rights Reserved.</p>
                         <div class="flex items-center space-x-6 mt-6 md:mt-0">
                              <a href="https://www.linkedin.com/in/hyp-media" target="_blank" class="text-neutral-500 hover:text-cyan-400 transition-colors">
-                                <i data-lucide="linkedin" class="w-5 h-5"></i>
+                                <i class="ph-light ph-linkedin-logo text-2xl"></i>
                              </a>
                              <a href="mailto:hello@hypmedia.co.in" class="text-neutral-500 hover:text-cyan-400 transition-colors">
-                                <i data-lucide="mail" class="w-5 h-5"></i>
+                                <i class="ph-light ph-envelope-simple text-2xl"></i>
                              </a>
                              <a href="https://wa.me/919485509850" target="_blank" class="text-neutral-500 hover:text-cyan-400 transition-colors">
-                                 <i data-lucide="phone" class="w-5 h-5"></i>
+                                 <i class="ph-light ph-phone text-2xl"></i>
                              </a>
                         </div>
                     </div>
@@ -713,17 +706,17 @@
     </div> <!-- END HOME VIEW -->
 
     <!-- WORK VIEW / DETAILED CASE STUDIES SUBPAGE -->
-    <div id="work-view" class="hidden relative z-50 bg-[#0a0a0a] min-h-screen text-white">
+    <div id="work-view" class="hidden relative z-50 bg-transparent min-h-screen text-white">
         
         <!-- Navigation for Work View -->
         <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-black/40 backdrop-blur-xl border-b border-white/10">
             <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
                 <button onclick="showHomeView()" class="group flex items-center gap-2 text-neutral-400 hover:text-white transition-colors">
-                    <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300"></i>
+                    <i class="ph-bold ph-arrow-left text-xl group-hover:-translate-x-1 transition-transform duration-300"></i>
                     <span class="font-bold text-lg">Back to Home</span>
                 </button>
                 <a href="#" onclick="showHomeView(); setTimeout(() => document.getElementById('contact').scrollIntoView(), 100);" class="hidden md:inline-flex bg-gradient-to-r from-blue-500 to-cyan-500 text-black font-bold py-2.5 px-6 rounded-full hover:from-blue-400 hover:to-cyan-400 transition-all items-center gap-2">
-                    Start Project <i data-lucide="rocket" class="w-4 h-4"></i>
+                    Start Project <i class="ph-light ph-rocket text-base"></i>
                 </a>
             </div>
         </header>
@@ -741,7 +734,7 @@
             </div>
         </section>
 
-        <div id="work-content-wrapper" class="bg-[#0a0a0a]">
+        <div id="work-content-wrapper" class="bg-transparent">
             <!-- Case Study 1: Azhar Iqubal (Image Left, Content Right) -->
             <section id="azhar-section" class="py-20 border-b border-white/5">
                 <div class="max-w-7xl mx-auto px-6">
@@ -749,7 +742,7 @@
                         <!-- Image -->
                         <div class="section-fade-in order-2 lg:order-1">
                              <div class="glow-border rounded-2xl overflow-hidden relative h-[400px] md:h-[500px]">
-                                <img src="image_7c3a3a.jpg" alt="Azhar Iqubal Personal Branding" onerror="this.src='https://images.unsplash.com/photo-1556761175-5973dc0f32b7?auto=format&fit=crop&q=80&w=800';" class="absolute inset-0 w-full h-full object-cover opacity-90">
+                                <img src="image_7c3a3a.jpg" alt="Azhar Iqubal Personal Branding" onerror="this.src='https://images.unsplash.com/photo-1556761175-5973dc0f32b7?auto=format&fit=crop&q=80&w=800';" class="absolute inset-0 w-full h-full object-cover opacity-90 mix-blend-luminosity">
                                 <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent"></div>
                              </div>
                         </div>
@@ -768,15 +761,15 @@
 
                                 <ul class="space-y-4 mt-6 glow-border p-6 rounded-2xl">
                                     <li class="flex items-start text-neutral-300">
-                                        <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
+                                        <i class="ph-fill ph-check-circle text-xl text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
                                         <span>Massive new audience reach through viral clips.</span>
                                     </li>
                                     <li class="flex items-start text-neutral-300">
-                                        <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
+                                        <i class="ph-fill ph-check-circle text-xl text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
                                         <span>Significant authority built within the startup ecosystem.</span>
                                     </li>
                                     <li class="flex items-start text-neutral-300">
-                                        <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
+                                        <i class="ph-fill ph-check-circle text-xl text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
                                         <span>Exceptional performance and engagement during Shark Tank.</span>
                                     </li>
                                 </ul>
@@ -805,15 +798,15 @@
 
                                 <ul class="space-y-4 mt-6 glow-border p-6 rounded-2xl">
                                     <li class="flex items-start text-neutral-300">
-                                        <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
+                                        <i class="ph-fill ph-check-circle text-xl text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
                                         <span>Subconscious recognition among target demographics.</span>
                                     </li>
                                     <li class="flex items-start text-neutral-300">
-                                        <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
+                                        <i class="ph-fill ph-check-circle text-xl text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
                                         <span>Rapid audience growth and follower acquisition.</span>
                                     </li>
                                     <li class="flex items-start text-neutral-300">
-                                        <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
+                                        <i class="ph-fill ph-check-circle text-xl text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
                                         <span>Established as a trusted voice in the informational space.</span>
                                     </li>
                                 </ul>
@@ -822,7 +815,7 @@
                         <!-- Image -->
                         <div class="section-fade-in">
                              <div class="glow-border rounded-2xl overflow-hidden relative h-[400px] md:h-[500px]">
-                                <img src="image_7c3697.png" alt="Riya Upreti Influencer Marketing" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800';" class="absolute inset-0 w-full h-full object-cover opacity-90">
+                                <img src="image_7c3697.png" alt="Riya Upreti Influencer Marketing" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800';" class="absolute inset-0 w-full h-full object-cover opacity-90 mix-blend-luminosity">
                                 <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent"></div>
                              </div>
                         </div>
@@ -837,7 +830,7 @@
                         <!-- Image -->
                         <div class="section-fade-in order-2 lg:order-1">
                              <div class="glow-border rounded-2xl overflow-hidden relative h-[400px] md:h-[500px]">
-                                <img src="image_7c39fc.png" alt="Kal Ke Krorepati Digital PR" onerror="this.src='https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800';" class="absolute inset-0 w-full h-full object-cover opacity-90">
+                                <img src="image_7c39fc.png" alt="Kal Ke Krorepati Digital PR" onerror="this.src='https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800';" class="absolute inset-0 w-full h-full object-cover opacity-90 mix-blend-luminosity">
                                 <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent"></div>
                              </div>
                         </div>
@@ -856,15 +849,15 @@
 
                                 <ul class="space-y-4 mt-6 glow-border p-6 rounded-2xl">
                                     <li class="flex items-start text-neutral-300">
-                                        <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
+                                        <i class="ph-fill ph-check-circle text-xl text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
                                         <span>Highly engaging clip series across multiple platforms.</span>
                                     </li>
                                     <li class="flex items-start text-neutral-300">
-                                        <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
+                                        <i class="ph-fill ph-check-circle text-xl text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
                                         <span>Amplified trailer visibility on JioHotstar.</span>
                                     </li>
                                     <li class="flex items-start text-neutral-300">
-                                        <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
+                                        <i class="ph-fill ph-check-circle text-xl text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
                                         <span>Massive influx of registrations for the next season.</span>
                                     </li>
                                 </ul>
@@ -893,15 +886,15 @@
 
                                 <ul class="space-y-4 mt-6 glow-border p-6 rounded-2xl">
                                     <li class="flex items-start text-neutral-300">
-                                        <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
+                                        <i class="ph-fill ph-check-circle text-xl text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
                                         <span>Successfully scaled their influencer marketing efforts.</span>
                                     </li>
                                     <li class="flex items-start text-neutral-300">
-                                        <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
+                                        <i class="ph-fill ph-check-circle text-xl text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
                                         <span>Massive, targeted reach across lifestyle demographics.</span>
                                     </li>
                                     <li class="flex items-start text-neutral-300">
-                                        <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
+                                        <i class="ph-fill ph-check-circle text-xl text-cyan-400 mr-3 shrink-0 mt-0.5"></i>
                                         <span>Highly successful, wide-reaching brand awareness campaign.</span>
                                     </li>
                                 </ul>
@@ -910,7 +903,7 @@
                         <!-- Image -->
                         <div class="section-fade-in">
                              <div class="glow-border rounded-2xl overflow-hidden relative h-[400px] md:h-[500px]">
-                                <img src="image_7c3714.png" alt="Chakaachak FMCG" onerror="this.src='https://images.unsplash.com/photo-1584824486509-114594660be8?auto=format&fit=crop&q=80&w=800';" class="absolute inset-0 w-full h-full object-cover opacity-90">
+                                <img src="image_7c3714.png" alt="Chakaachak FMCG" onerror="this.src='https://images.unsplash.com/photo-1584824486509-114594660be8?auto=format&fit=crop&q=80&w=800';" class="absolute inset-0 w-full h-full object-cover opacity-90 mix-blend-luminosity">
                                 <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent"></div>
                              </div>
                         </div>
@@ -919,18 +912,18 @@
             </section>
 
             <!-- CTA -->
-            <section class="py-32 text-center bg-[#0a0a0a]">
+            <section class="py-32 text-center bg-transparent">
                 <div class="max-w-4xl mx-auto px-6">
                     <h2 class="text-4xl md:text-5xl font-black mb-6 text-white uppercase tracking-tight">Seen Enough?</h2>
                     <p class="text-neutral-400 text-xl mb-12 max-w-2xl mx-auto">These results aren't accidents. They are engineered. Let's engineer yours.</p>
                     <button onclick="showHomeView(); setTimeout(() => document.getElementById('contact').scrollIntoView(), 100);" class="magnetic-button inline-flex items-center justify-center gap-2 px-10 py-5 bg-gradient-to-r from-blue-500 to-cyan-500 text-black rounded-full font-bold text-xl hover:from-blue-400 hover:to-cyan-400 transition-all shadow-lg shadow-blue-500/20">
-                        Start Your Transformation <i data-lucide="rocket" class="w-6 h-6"></i>
+                        Start Your Transformation <i class="ph-light ph-rocket text-2xl"></i>
                     </button>
                 </div>
             </section>
 
             <!-- Footer for Work View -->
-            <footer class="content-section border-t border-white/5 bg-[#0a0a0a]">
+            <footer class="content-section border-t border-white/5 bg-[#050505]">
                 <div class="max-w-7xl mx-auto px-6 py-12 text-center text-neutral-500">
                     <p>&copy; <span id="year-work"></span> Hyp! Media. All Rights Reserved.</p>
                 </div>
@@ -942,7 +935,7 @@
     <!-- Shorts Modal -->
     <div id="shortsModal" class="modal-overlay fixed inset-0 bg-black/60 backdrop-blur-2xl flex items-center justify-center p-6 z-50">
         <div class="modal-content bg-neutral-950/80 border border-white/10 max-w-4xl w-full rounded-2xl relative shadow-2xl shadow-blue-900/20">
-            <button class="modal-close absolute top-6 right-6 text-neutral-500 hover:text-white transition-colors bg-white/5 rounded-full p-2"><i data-lucide="x" class="w-5 h-5"></i></button>
+            <button class="modal-close absolute top-6 right-6 text-neutral-500 hover:text-white transition-colors bg-white/5 rounded-full p-2"><i class="ph-bold ph-x text-xl"></i></button>
             <div class="modal-body p-8 md:p-12 max-h-[80vh] overflow-y-auto">
                 <h2 class="text-4xl font-bold mb-2 text-white">Viral Shorts Blueprint</h2>
                 <p class="text-lg text-cyan-400 mb-8">Architecting your content's virality and audience retention.</p>
@@ -956,19 +949,19 @@
                     <h3 class="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">How It Translates to Profit:</h3>
                     <div class="grid md:grid-cols-2 gap-8">
                         <div>
-                            <h4 class="font-bold text-white mb-4 flex items-center gap-2"><i data-lucide="clock" class="w-5 h-5 text-cyan-400"></i> Short-Term ROI</h4>
+                            <h4 class="font-bold text-white mb-4 flex items-center gap-2"><i class="ph-light ph-clock text-2xl text-cyan-400"></i> Short-Term ROI</h4>
                             <ul class="space-y-3 text-neutral-400">
-                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 mt-1 text-cyan-400 shrink-0"></i> Massive Spike in Daily Views.</li>
-                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 mt-1 text-cyan-400 shrink-0"></i> Rapid Subscriber Acquisition.</li>
-                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 mt-1 text-cyan-400 shrink-0"></i> Revived Interest in Old Content.</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-xl text-cyan-400 shrink-0"></i> Massive Spike in Daily Views.</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-xl text-cyan-400 shrink-0"></i> Rapid Subscriber Acquisition.</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-xl text-cyan-400 shrink-0"></i> Revived Interest in Old Content.</li>
                             </ul>
                         </div>
                         <div>
-                            <h4 class="font-bold text-white mb-4 flex items-center gap-2"><i data-lucide="trending-up" class="w-5 h-5 text-blue-500"></i> Long-Term ROI</h4>
+                            <h4 class="font-bold text-white mb-4 flex items-center gap-2"><i class="ph-light ph-trend-up text-2xl text-blue-500"></i> Long-Term ROI</h4>
                             <ul class="space-y-3 text-neutral-400">
-                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 mt-1 text-blue-500 shrink-0"></i> Increased Channel Authority.</li>
-                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 mt-1 text-blue-500 shrink-0"></i> Higher Brand Sponsorship Rates.</li>
-                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 mt-1 text-blue-500 shrink-0"></i> Evergreen Traffic Funnels.</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-xl text-blue-500 shrink-0"></i> Increased Channel Authority.</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-xl text-blue-500 shrink-0"></i> Higher Brand Sponsorship Rates.</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-xl text-blue-500 shrink-0"></i> Evergreen Traffic Funnels.</li>
                             </ul>
                         </div>
                     </div>
@@ -980,7 +973,7 @@
     <!-- LinkedIn Modal -->
     <div id="linkedinModal" class="modal-overlay fixed inset-0 bg-black/60 backdrop-blur-2xl flex items-center justify-center p-6 z-50">
         <div class="modal-content bg-neutral-950/80 border border-white/10 max-w-4xl w-full rounded-2xl relative shadow-2xl shadow-blue-900/20">
-            <button class="modal-close absolute top-6 right-6 text-neutral-500 hover:text-white transition-colors bg-white/5 rounded-full p-2"><i data-lucide="x" class="w-5 h-5"></i></button>
+            <button class="modal-close absolute top-6 right-6 text-neutral-500 hover:text-white transition-colors bg-white/5 rounded-full p-2"><i class="ph-bold ph-x text-xl"></i></button>
             <div class="modal-body p-8 md:p-12 max-h-[80vh] overflow-y-auto">
                 <h2 class="text-4xl font-bold mb-2 text-white">LinkedIn Management</h2>
                 <p class="text-lg text-cyan-400 mb-10">Why your silence on LinkedIn is costing you deals.</p>
@@ -1015,7 +1008,7 @@
     <!-- PR & ORM Modal -->
     <div id="prModal" class="modal-overlay fixed inset-0 bg-black/60 backdrop-blur-2xl flex items-center justify-center p-6 z-50">
         <div class="modal-content bg-neutral-950/80 border border-white/10 max-w-4xl w-full rounded-2xl relative shadow-2xl shadow-blue-900/20">
-            <button class="modal-close absolute top-6 right-6 text-neutral-500 hover:text-white transition-colors bg-white/5 rounded-full p-2"><i data-lucide="x" class="w-5 h-5"></i></button>
+            <button class="modal-close absolute top-6 right-6 text-neutral-500 hover:text-white transition-colors bg-white/5 rounded-full p-2"><i class="ph-bold ph-x text-xl"></i></button>
             <div class="modal-body p-8 md:p-12 max-h-[80vh] overflow-y-auto">
                 <h2 class="text-4xl font-bold mb-2 text-white">Digital PR & ORM Blueprint</h2>
                 <p class="text-lg text-cyan-400 mb-8">Controlling the narrative and building unbreakable trust.</p>
@@ -1029,19 +1022,19 @@
                     <h3 class="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">How It Translates to Profit:</h3>
                     <div class="grid md:grid-cols-2 gap-8">
                         <div>
-                            <h4 class="font-bold text-white mb-4 flex items-center gap-2"><i data-lucide="clock" class="w-5 h-5 text-cyan-400"></i> Short-Term ROI</h4>
+                            <h4 class="font-bold text-white mb-4 flex items-center gap-2"><i class="ph-light ph-clock text-2xl text-cyan-400"></i> Short-Term ROI</h4>
                             <ul class="space-y-3 text-neutral-400">
-                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 mt-1 text-cyan-400 shrink-0"></i> Immediate Credibility Boost.</li>
-                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 mt-1 text-cyan-400 shrink-0"></i> Suppress Negative Search Results.</li>
-                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 mt-1 text-cyan-400 shrink-0"></i> Higher Conversion on Sales Calls.</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-xl text-cyan-400 shrink-0"></i> Immediate Credibility Boost.</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-xl text-cyan-400 shrink-0"></i> Suppress Negative Search Results.</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-xl text-cyan-400 shrink-0"></i> Higher Conversion on Sales Calls.</li>
                             </ul>
                         </div>
                         <div>
-                            <h4 class="font-bold text-white mb-4 flex items-center gap-2"><i data-lucide="trending-up" class="w-5 h-5 text-blue-500"></i> Long-Term ROI</h4>
+                            <h4 class="font-bold text-white mb-4 flex items-center gap-2"><i class="ph-light ph-trend-up text-2xl text-blue-500"></i> Long-Term ROI</h4>
                             <ul class="space-y-3 text-neutral-400">
-                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 mt-1 text-blue-500 shrink-0"></i> Seamless Investor Fundraising.</li>
-                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 mt-1 text-blue-500 shrink-0"></i> Long-term Brand Equity Protection.</li>
-                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 mt-1 text-blue-500 shrink-0"></i> Inbound Press Opportunities.</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-xl text-blue-500 shrink-0"></i> Seamless Investor Fundraising.</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-xl text-blue-500 shrink-0"></i> Long-term Brand Equity Protection.</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-xl text-blue-500 shrink-0"></i> Inbound Press Opportunities.</li>
                             </ul>
                         </div>
                     </div>
@@ -1053,7 +1046,7 @@
     <!-- Influencer Modal -->
     <div id="influencerModal" class="modal-overlay fixed inset-0 bg-black/60 backdrop-blur-2xl flex items-center justify-center p-6 z-50">
         <div class="modal-content bg-neutral-950/80 border border-white/10 max-w-4xl w-full rounded-2xl relative shadow-2xl shadow-blue-900/20">
-            <button class="modal-close absolute top-6 right-6 text-neutral-500 hover:text-white transition-colors bg-white/5 rounded-full p-2"><i data-lucide="x" class="w-5 h-5"></i></button>
+            <button class="modal-close absolute top-6 right-6 text-neutral-500 hover:text-white transition-colors bg-white/5 rounded-full p-2"><i class="ph-bold ph-x text-xl"></i></button>
             <div class="modal-body p-8 md:p-12 max-h-[80vh] overflow-y-auto">
                 <h2 class="text-4xl font-bold mb-2 text-white">Influencer Marketing Blueprint</h2>
                 <p class="text-lg text-cyan-400 mb-8">Leveraging borrowed trust to scale your brand authentically.</p>
@@ -1067,19 +1060,19 @@
                     <h3 class="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">The Campaign Engine:</h3>
                     <div class="grid md:grid-cols-2 gap-8">
                         <div>
-                            <h4 class="font-bold text-white mb-4 flex items-center gap-2"><i data-lucide="target" class="w-5 h-5 text-cyan-400"></i> Sourcing & Strategy</h4>
+                            <h4 class="font-bold text-white mb-4 flex items-center gap-2"><i class="ph-light ph-target text-2xl text-cyan-400"></i> Sourcing & Strategy</h4>
                             <ul class="space-y-3 text-neutral-400">
-                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 mt-1 text-cyan-400 shrink-0"></i> Data-driven influencer selection.</li>
-                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 mt-1 text-cyan-400 shrink-0"></i> Authentic integration concepts.</li>
-                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 mt-1 text-cyan-400 shrink-0"></i> Rigorous audience vetting.</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-xl text-cyan-400 shrink-0"></i> Data-driven influencer selection.</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-xl text-cyan-400 shrink-0"></i> Authentic integration concepts.</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-xl text-cyan-400 shrink-0"></i> Rigorous audience vetting.</li>
                             </ul>
                         </div>
                         <div>
-                            <h4 class="font-bold text-white mb-4 flex items-center gap-2"><i data-lucide="bar-chart" class="w-5 h-5 text-blue-500"></i> Execution & Scaling</h4>
+                            <h4 class="font-bold text-white mb-4 flex items-center gap-2"><i class="ph-light ph-chart-bar text-2xl text-blue-500"></i> Execution & Scaling</h4>
                             <ul class="space-y-3 text-neutral-400">
-                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 mt-1 text-blue-500 shrink-0"></i> Seamless contract negotiation.</li>
-                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 mt-1 text-blue-500 shrink-0"></i> Performance tracking (CPA/ROAS).</li>
-                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 mt-1 text-blue-500 shrink-0"></i> Scaling winning creator partnerships.</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-xl text-blue-500 shrink-0"></i> Seamless contract negotiation.</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-xl text-blue-500 shrink-0"></i> Performance tracking (CPA/ROAS).</li>
+                                <li class="flex items-start gap-2"><i class="ph-fill ph-check-circle text-xl text-blue-500 shrink-0"></i> Scaling winning creator partnerships.</li>
                             </ul>
                         </div>
                     </div>
@@ -1131,8 +1124,6 @@
         };
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialize Icons
-            lucide.createIcons();
             gsap.registerPlugin(ScrollTrigger);
 
             // --- Three.js Globe Animation (Hero Background) ---
@@ -1300,8 +1291,7 @@
                     const submitBtn = form.querySelector('button[type="submit"]');
                     const originalBtnHtml = submitBtn.innerHTML;
                     
-                    submitBtn.innerHTML = 'Sending... <i data-lucide="loader" class="w-5 h-5 animate-spin"></i>';
-                    lucide.createIcons();
+                    submitBtn.innerHTML = 'Sending... <i class="ph-bold ph-circle-notch animate-spin text-xl"></i>';
                     submitBtn.disabled = true;
 
                     fetch('https://api.web3forms.com/submit', {
@@ -1330,7 +1320,6 @@
                         .finally(() => {
                             submitBtn.innerHTML = originalBtnHtml;
                             submitBtn.disabled = false;
-                            lucide.createIcons();
                             form.reset();
                             setTimeout(() => {
                                 result.innerHTML = "";
